@@ -1,4 +1,28 @@
-v1
+## Blink — programming an Arduino sketch
+```bash
+void setup() {
+    Serial.begin(115200);  // open serial connection to USB Serial port (connected to your computer)
+    Serial1.begin(57600);  // open internal serial connection to MT7688AN
+                           // in MT7688AN, this maps to device
+    pinMode(13, OUTPUT);
+    }
+ 
+void loop() {
+    int c = Serial1.read();      // read from MT7688AN
+    if (c != -1) {
+        switch(c) {
+          case '0':                // turn off D13 when receiving "0"
+             digitalWrite(13, 0);
+            break;
+          case '1':                // turn off D13 when receiving "1"
+             digitalWrite(13, 1);
+            break;
+        }
+    }
+} 
+```
+
+## v1
 ```bash
 #include "DHT.h"
 #include <Bridge.h>
@@ -116,3 +140,8 @@ void loop() {
 
 }
 ```
+
+
+
+## 參考資料
+- MPU-MCU UART Connection : https://docs.labs.mediatek.com/resource/linkit-smart-7688/en/tutorials/linkit-smart-7688-duo/mpu-mcu-uart-connection
